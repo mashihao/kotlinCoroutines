@@ -28,6 +28,17 @@ class ErrorCatchTest {
                     error(e)
                 }
             }
+
+            var f2 = flow {
+                try {
+                    throw Exception("error")
+                    emit(1)
+                } catch (e: Exception) {
+                    println(e.message)
+//                    emit(e)
+                    error(e)
+                }
+            }
             println()
             println()
             println()
@@ -41,7 +52,10 @@ class ErrorCatchTest {
             println()
             println()
             println("@ 自己不带拦截的===================================")
-            f.collect {
+            f2.collect() {
+
+            }
+            f2.collect {
                 println("over$it")
             }
         }
@@ -49,15 +63,6 @@ class ErrorCatchTest {
 }
 
 
-@OptIn(InternalCoroutinesApi::class)
-public suspend inline fun <T> Flow<T>.collect(crossinline action: suspend (value: T) -> Unit) =
-    try {
-        this.collect(object : FlowCollector<T> {
-            override suspend fun emit(value: T) = action(value)
-        })
-    } catch (e: Exception) {
-        println("Default Error :" + e.message)
-    }
 
 
 //

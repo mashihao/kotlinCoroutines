@@ -36,7 +36,7 @@ class Tesla2Test {
                 }
                 println("testList init over!")
 //            var teslaMap: Map<Int, Tesla> = teslaInfo.associateBy { it.id }
-                //开始获取
+                //开始获取Tesla3Test.kt
                 println("====begin get teslaInfoUrl")
 
                 var ttt = mutableListOf<Deferred<Any>>()

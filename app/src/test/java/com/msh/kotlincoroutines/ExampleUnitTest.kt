@@ -16,11 +16,12 @@ import org.junit.Assert.*
 class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
 
-        runBlocking {
-            main()
-        }
+        println(
+            arrayOf(1,2,3,4,5,6,7,8,9).groupBy {
+                it.div(3)
+            }
+        )
     }
     fun main() = runBlocking {
         val job1 = launch { // ①

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="mainBackgroundColor" format="color" />
+    <attr name="textPrimaryColor" format="color" />
+    <attr name="textSecondaryColor" format="color" />
+    <attr name="textPrimaryReverseColor" format="color" />
+    <attr name="dividerLineColor" format="color" />
+    <attr name="colorBackground" format="color" />
+    <attr name="colorSecondaryDark" format="color" />
+    <attr name="colorSurface2" format="color" />
+    <attr name="colorOnSurface2" format="color" />
+    <attr name="colorSurface3" format="color" />
+    <attr name="colorOnSurface3" format="color" />
+    <attr name="colorRed" format="color" />
+    <attr name="colorOnRed" format="color" />
+    <attr name="vehicleToolButtonStyle" format="reference" />
+
+    <declare-styleable name="VehicleToolButton">
+        <attr name="icon" format="reference" />
+        <attr name="title" format="string" />
+        <attr name="subtitle" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="MaxHeightScrollView">
+        <attr name="android:maxHeight" format="dimension" />
+    </declare-styleable>
+    <declare-styleable name="SwitchView">
+        <attr name="hasShadow" format="boolean" />
+        <attr name="primaryColor" format="color" />
+        <attr name="primaryColorDark" format="color" />
+        <attr name="offColor" format="color" />
+        <attr name="offColorDark" format="color" />
+        <attr name="barColorOpen" format="color" />
+        <attr name="barColorClose" format="color" />
+        <attr name="bgColor" format="color" />
+        <attr name="shadowColor" format="color" />
+        <attr name="ratioAspect" format="float" />
+        <attr name="isOpened" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="BatteryProgressIndicator">
+        <attr name="trackColor" format="color" />
+        <attr name="indicatorColor" format="color|reference" />
+        <attr name="progress" format="integer" />
+        <attr format="dimension" name="trackCornerRadius"/>
+    </declare-styleable>
+
+</resources>

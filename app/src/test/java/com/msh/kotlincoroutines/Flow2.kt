@@ -1,10 +1,12 @@
 package com.msh.kotlincoroutines
 
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
+import java.lang.RuntimeException
 
 /**
  * @author : 马世豪
@@ -32,12 +34,17 @@ class Flow2 {
                     }
                     emit(bool)
                 }
-            }.map {
-                print(it)
-                it
-            }.collect {
-
             }
+                .catch {
+                    println(it)
+                }.map {
+                    println("进入 map")
+                    Thread.sleep(5000)
+                    println("结束 map")
+                    it
+                }.collect {
+
+                }
         }
 
     }
