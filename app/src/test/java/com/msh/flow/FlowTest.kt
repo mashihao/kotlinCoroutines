@@ -3,6 +3,7 @@ package com.msh.flow
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 import org.junit.Test
+import java.util.*
 import kotlin.math.sign
 
 /**
@@ -14,35 +15,23 @@ import kotlin.math.sign
 class FlowTest {
 
 
+    fun treadName(): String {
+        return Thread.currentThread().name
+    }
+
     @DelicateCoroutinesApi
     @Test
     fun test() {
 
-        val signEvent = MutableSharedFlow<String>()
 
-        flow<String> {  }
-            .filter {
 
-            }
-
-        runBlocking {
-            async {
-                runBlocking {
-                    for (i in 0..13)
-                    {
-                        signEvent.tryEmit("$i")
-                        delay(1000)
-                    }
-                }
-
-                runBlocking {
-                    signEvent.collect {
-                        log(it)
-                    }
-                }
-            }
-        }
-
+        val listA = mutableListOf<Int>(1,2,3,4,5)
+        val listB = listA.filter {
+            it>2
+        }.map {
+            "listb--->$it"
+        }.toMutableList()
+        log(listB)
 
     }
 

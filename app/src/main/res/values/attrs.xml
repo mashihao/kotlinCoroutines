@@ -45,4 +45,10 @@
         <attr format="dimension" name="trackCornerRadius"/>
     </declare-styleable>
 
+    <declare-styleable name="PopDialog">
+        <attr name="center_text" format="string"/>
+        <attr name="leftvisibility" format="boolean"/>
+        <attr name="rightvisibility" format="boolean"/>
+    </declare-styleable>
+
 </resources>

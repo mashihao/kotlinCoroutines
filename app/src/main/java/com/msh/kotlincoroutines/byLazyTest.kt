@@ -8,7 +8,6 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.*
-import com.msh.kotlincoroutines.databinding.ActivityMainBinding
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 import java.lang.Runnable
@@ -28,10 +27,7 @@ class byLazyTest : AppCompatActivity() {
 
 
         Log.e("MSH---", Thread.currentThread().name)
-        var button = findViewById<Button>(R.id.btn_login)
-        button.setOnClickListener {
-            Toast.makeText(this, test, Toast.LENGTH_SHORT).show()
-        }
+
     }
 
     fun log(any: Any) {

@@ -5,6 +5,7 @@
 
     <data>
 
+
         <variable
             name="viewmodel"
             type="com.msh.kotlincoroutines.MainActivity.MainViewModel" />
@@ -13,38 +14,12 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".MainActivity"
-        tools:viewBindingIgnore="false">
-
-        <Button
-            android:id="@+id/btn_login"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Hello World!" />
-
-        <com.google.android.material.progressindicator.LinearProgressIndicator
-            android:id="@+id/linear_determinate"
-            android:layout_width="match_parent"
-            android:layout_height="32dp"
-            android:progress="@{viewmodel.progress}"
-            app:trackCornerRadius="8dp"
-            app:trackThickness="32dp" />
+        android:orientation="vertical">
 
 
-        <com.msh.kotlincoroutines.BatteryProgressIndicator
-            android:id="@+id/linear_determinate2"
-            android:layout_width="match_parent"
-            android:layout_height="32dp"
-            app:indicatorColor="@color/black"
-            app:trackColor="@color/teal_200"
-
-            app:trackCornerRadius="10dp" />
-
-        <TextView
-            android:id="@+id/text"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
-
     </LinearLayout>
 </layout>

@@ -31,22 +31,10 @@ class DefaultLifecycleObserverTest {
     @Test
     fun test() {
 
-        runBlocking {
-            async {
-                try {
-
-                    withTimeout(11000)
-                    {
-                        test1()
-                        test2()
-                    }
-                }catch (ex:Exception)
-                {
-                    print("jieshule")
-                }
-            }
+        for (i in 0..10)
+        {
+            println(i)
         }
-
 
     }
 
