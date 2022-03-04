@@ -1,10 +1,9 @@
 package com.msh.flow
 
+import android.os.Looper
 import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.*
 import org.junit.Test
-import java.util.*
-import kotlin.math.sign
+import kotlin.system.measureTimeMillis
 
 /**
  * @author : 马世豪
@@ -12,31 +11,19 @@ import kotlin.math.sign
  * email : ma_shihao@yeah.net
  * des :
  */
-class FlowTest {
 
 
-    fun treadName(): String {
-        return Thread.currentThread().name
+import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.*
+
+
+suspend fun main() = coroutineScope{
+    launch{
+        delay(1000)
+        println("kotlin coroutines world")
     }
-
-    @DelicateCoroutinesApi
-    @Test
-    fun test() {
-
-
-
-        val listA = mutableListOf<Int>(1,2,3,4,5)
-        val listB = listA.filter {
-            it>2
-        }.map {
-            "listb--->$it"
-        }.toMutableList()
-        log(listB)
-
-    }
-
-    fun log(any: Any) {
-        println("--->${any}")
-    }
-
+    println("hello word")
 }
+
+
+typealias ssss = (name: String, age: Int) -> Int

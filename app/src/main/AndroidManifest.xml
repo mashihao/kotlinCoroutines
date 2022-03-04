@@ -15,14 +15,29 @@
         <activity
             android:name=".viewmodel.TestViewModelActivity"
             android:exported="true" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity2" />
+        <activity android:name=".MainActivity">
+
+            <intent-filter>
+                <!--协议部分，随便设置-->
+                <data
+                    android:host="msh"
+                    android:path="/msh"
+                    android:scheme="scheme" />
+                <!--下面这几行也必须得设置-->
+                <category android:name="android.intent.category.DEFAULT" />
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.BROWSABLE" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".HandlerActivity" />
+        <activity android:name=".custom.CustomViewActivity"/>
     </application>
 
 </manifest>

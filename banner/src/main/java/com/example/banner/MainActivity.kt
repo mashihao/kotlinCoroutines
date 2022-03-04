@@ -1,7 +1,10 @@
 package com.example.banner
 
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 
@@ -16,6 +19,8 @@ class MainActivity : AppCompatActivity() {
         initListener()
     }
 
+    data class Test(var createdAt:Long)
+
     private fun initView() {
         recyclerView = findViewById(R.id.recyclerview)
         recyclerView?.setLayoutManager(
@@ -25,6 +30,19 @@ class MainActivity : AppCompatActivity() {
                 false
             )
         ) //设置LinearLayoutManager.HORIZONTAL  则水平滚动
+
+        findViewById<ImageView>(R.id.img).setOnClickListener {
+
+
+
+//            <data
+//            android:scheme="scheme_byd"
+//            android:host="host_com_byd_aeri_caranywhere"
+//            android:path="/path_jump_navi" />
+
+            startActivity(Intent(this,SecondActivity::class.java))
+
+        }
     }
 
     private fun initData() {

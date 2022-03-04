@@ -19,16 +19,19 @@ class Flow2 {
     fun log(any: Any) {
         println("$any")
     }
+
     suspend fun fun1(): Int {
         log("fun1--->延时 2000")
         delay(2000)
         return 1
     }
+
     suspend fun fun2(num: Int): String {
         log("fun2---->延时 2000")
         delay(2000)
         return "fun2-->$num"
     }
+
     @Test
     fun test() {
         runBlocking {
@@ -40,40 +43,31 @@ class Flow2 {
         }
     }
 
-    val flow1 = flow{
+    val flow1 = flow {
         log("fun1--->延时 5000")
         delay(5000)
         emit(1)
     }
-    fun flow2(int:Int) = flow{
+
+    fun flow2(int: Int) = flow {
         log("fun2---->延时 2000")
         delay(2000)
-        emit( "fun2-->$int")
-    }
-    @FlowPreview
-    @Test
-    fun test2() {
-        runBlocking {
-//            var int :Int = 0
-//            flow1.catch {
-//                log(it)
-//            }.collect {
-//                int= it
-//            }
-//            flow2(int).collect {
-//                log("最终输出结果$it")
-//            }
-            flow1.flatMapConcat {
-                flow2(it)
-            }.collect {
-                log("最终输出结果$it")
-            }
-//            fun1--->延时 2000
-//            fun2---->延时 2000
-//            最终输出结果fun2-->1
-        }
+        emit("fun2-->$int")
     }
 
+    @Test
+    fun test2() {
+
+        val str = "@fdsa http://www.baidu.com zhongjian 中间  http://www.xiaote.comjiewei @fdsa "
+//        val regex =
+//            "^([hH][tT]{2}[pP]:/*|[hH][tT]{2}[pP][sS]:/*|[fF][tT][pP]:/*)(([A-Za-z0-9-~]+).)+([A-Za-z0-9-~\\/])+(\\?{0,1}(([A-Za-z0-9-~]+\\={0,1})([A-Za-z0-9-~]*)\\&{0,1})*)$"
+        var regexFindRes = Regex("""@[\S]*""").findAll(str)
+        println("开始")
+        regexFindRes.forEach {
+            println("${it.value}")
+        }
+        println("结束")
+    }
 
 
 }

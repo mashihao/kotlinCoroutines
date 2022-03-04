@@ -15,6 +15,7 @@ open class BaseActivity : AppCompatActivity() {
     fun log(any:Any) {
         LogUtils.eTag("MSH----->","$any")
     }
+
     fun toast(any:Any){
         ToastUtils.showShort("$any")
     }

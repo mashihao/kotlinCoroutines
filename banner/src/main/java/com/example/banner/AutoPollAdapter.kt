@@ -43,7 +43,7 @@ class AutoPollAdapter(context: Context, list: List<AutoScrollLuckyListReq.DatasB
     }
 
     override fun getItemCount(): Int {
-        return Int.MAX_VALUE
+        return mData.size
     }
 
     class BaseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
