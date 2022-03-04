@@ -10,7 +10,6 @@ import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.*
 import com.blankj.utilcode.util.ToastUtils
 import com.msh.kotlincoroutines.databinding.ActivityMainBinding
 import kotlinx.coroutines.*
@@ -25,6 +24,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.blankj.utilcode.util.ActivityUtils
@@ -66,6 +68,13 @@ class MainActivity : BaseActivity() {
             ActivityUtils.startActivity(viewModel.list[position].clazz)
 
         }
+
+        viewModel.list2.observe(this) {
+            Log.d("HomeViewModel", "observe size:${it.size}")
+        }
+
+        viewModel.loadData()
+
     }
 
 
@@ -78,6 +87,62 @@ class MainActivity : BaseActivity() {
             add(Item("ViewModelTest", TestViewModelActivity::class.java))
             add(Item("ViewModelTest", TestViewModelActivity::class.java))
             add(Item("ViewModelTest", TestViewModelActivity::class.java))
+        }
+
+
+        //暴露给View层的列表数据
+        val list2 = MutableLiveData<List<String?>>()
+
+        //多个子Flow，这里简单都返回String，实际场景根据需要，返回相应的数据类型即可
+        private val bannerFlow = MutableStateFlow<String?>(null)
+        private val channelFlow = MutableStateFlow<String?>(null)
+        private val listFlow = MutableStateFlow<String?>(null)
+
+
+        init {
+            //使用combine操作符
+            viewModelScope.launch {
+                combine(bannerFlow, channelFlow, listFlow) { bannerData, channelData, listData ->
+                    Log.d("HomeViewModel", "combine  bannerData:$bannerData,channelData:$channelData,listData:$listData")
+                    //只要子flow里面的数据不为空，就放到resultList里面
+                    val resultList = mutableListOf<String?>()
+                    if (bannerData != null) {
+                        resultList.add(bannerData)
+                    }
+                    if (channelData != null) {
+                        resultList.add(channelData)
+                    }
+                    if (listData != null) {
+                        resultList.add(listData)
+                    }
+                    resultList
+                }.collect {
+                    //收集combine之后的数据，修改liveData的值，通知UI层刷新列表
+                    Log.d("HomeViewModel", "collect: ${it.size}")
+                    list2.postValue(it)
+                }
+            }
+        }
+
+        fun loadData() {
+            viewModelScope.launch(Dispatchers.IO) {
+                //模拟耗时操作
+                async {
+                    delay(1000)
+                    Log.d("HomeViewModel", "getBannerData success")
+                    bannerFlow.emit("Banner")
+                }
+                async {
+                    delay(2000)
+                    Log.d("HomeViewModel", "getChannelData success")
+                    channelFlow.emit("Channel")
+                }
+                async {
+                    delay(3000)
+                    Log.d("HomeViewModel", "getListData success")
+                    listFlow.emit("List")
+                }
+            }
         }
 
     }
