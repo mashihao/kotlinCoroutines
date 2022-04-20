@@ -16,6 +16,47 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+
+
+
+        <RelativeLayout
+            android:layout_marginTop="100dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="180dp">
+
+
+            <com.youth.banner.Banner
+                android:id="@+id/bannerLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:layout_marginTop="20dp"
+                />
+            <Button
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:id="@+id/left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="上一页" />
+
+            <Button
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:id="@+id/right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="下一页" />
+
+        </RelativeLayout>
+
+
+        <EditText
+            android:id="@+id/input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
         <TextView
             android:id="@+id/contenttext2"
             android:layout_width="match_parent"
@@ -40,7 +81,7 @@
             android:textIsSelectable="true"
             android:textSize="15dp" />
 
-        <TextView
+        <Button
             android:id="@+id/contenttext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -50,7 +91,6 @@
             android:paddingBottom="8dp"
             android:text="button"
             android:textColor="#000000"
-            android:textIsSelectable="true"
             android:textSize="15dp" />
 
 

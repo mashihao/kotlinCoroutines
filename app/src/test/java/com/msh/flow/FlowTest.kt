@@ -17,12 +17,28 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 
 
-suspend fun main() = coroutineScope{
-    launch{
-        delay(1000)
-        println("kotlin coroutines world")
+suspend fun main() = coroutineScope {
+
+    listOf(1, 2, 3, 4, 5, 6).forEach {
+        if (it == 3) {
+            return@forEach
+        }
+        println(it)
     }
-    println("hello word")
+    listOf(1, 2, 3, 4, 5, 6).forEach loop@{
+        if (it == 3) {
+            return@loop
+        }
+        println(it)
+    }
+    run outside@{
+        listOf(1, 2, 3, 4, 5, 6).forEach {
+            if (it == 3) {
+                return@outside
+            }
+            println(it)
+        }
+    }
 }
 
 

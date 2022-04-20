@@ -2,40 +2,28 @@ package com.msh.kotlincoroutines
 
 import android.app.Activity
 import android.app.Application
-import android.content.Context
-import android.content.Intent
 import android.graphics.*
 import android.os.Bundle
 import android.util.Log
-import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
-import com.blankj.utilcode.util.ToastUtils
-import com.msh.kotlincoroutines.databinding.ActivityMainBinding
-import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.*
-import android.media.ThumbnailUtils
-
-import androidx.core.graphics.drawable.DrawableCompat
-import android.graphics.Bitmap
-
-import android.graphics.BitmapFactory
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.*
+import androidx.activity.viewModels
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.blankj.utilcode.util.ActivityUtils
-import com.blankj.utilcode.util.LogUtils
+import com.blankj.utilcode.util.ToastUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.msh.kotlincoroutines.base.BaseActivity
+import com.msh.kotlincoroutines.databinding.ActivityMainBinding
 import com.msh.kotlincoroutines.databinding.MainItemBinding
 import com.msh.kotlincoroutines.viewmodel.TestViewModelActivity
+import com.youth.banner.Banner
+import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.*
 
 
 class MainActivity : BaseActivity() {
@@ -43,6 +31,15 @@ class MainActivity : BaseActivity() {
     val test: String by msh {
         "123"
     }
+
+    var imageUrls = listOf(
+        "https://img.zcool.cn/community/01b72057a7e0790000018c1bf4fce0.png",
+        "https://img.zcool.cn/community/016a2256fb63006ac7257948f83349.jpg",
+        "https://img.zcool.cn/community/01233056fb62fe32f875a9447400e1.jpg",
+        "https://img.zcool.cn/community/01700557a7f42f0000018c1bd6eb23.jpg"
+
+    )
+
 
     val viewModel: MainViewModel by viewModels<MainViewModel>()
 
@@ -55,6 +52,40 @@ class MainActivity : BaseActivity() {
         dataBinding.lifecycleOwner = this
         dataBinding.viewmodel = viewModel
         init()
+
+
+        val banner =dataBinding.bannerLayout2
+        //设置图片加载器
+        //设置图片加载器
+        banner.setImageLoader(GlideImageLoader())
+        //设置图片集合
+        //设置图片集合
+        banner.setImages(imageUrls)
+        //banner设置方法全部调用完毕时最后调用
+        //banner设置方法全部调用完毕时最后调用
+        banner.start()
+
+
+        val text = dataBinding.input.text.toString()
+        ToastUtils.showShort("${if (text.isEmpty()) 0.0 else text.toDouble()}")
+
+
+        dataBinding.input.filters = arrayOf(FloatNumInputFilter())
+
+        dataBinding.contenttext.setOnClickListener {
+            ToastUtils.showShort(dataBinding.input.text.toString())
+            dataBinding.input.setText("0.23")
+        }
+
+        dataBinding.left.setOnClickListener {
+            BannerUtils.previous(dataBinding.bannerLayout2)
+        }
+        dataBinding.right.setOnClickListener {
+            BannerUtils.next(dataBinding.bannerLayout2)
+        }
+
+
+
     }
 
     var adapter = Adapter()
@@ -73,10 +104,10 @@ class MainActivity : BaseActivity() {
             Log.d("HomeViewModel", "observe size:${it.size}")
         }
 
+
         viewModel.loadData()
 
     }
-
 
     open class MainViewModel(application: Application) : AndroidViewModel(application) {
         var progress = MutableLiveData<Int>(1)
@@ -103,7 +134,10 @@ class MainActivity : BaseActivity() {
             //使用combine操作符
             viewModelScope.launch {
                 combine(bannerFlow, channelFlow, listFlow) { bannerData, channelData, listData ->
-                    Log.d("HomeViewModel", "combine  bannerData:$bannerData,channelData:$channelData,listData:$listData")
+                    Log.d(
+                        "HomeViewModel",
+                        "combine  bannerData:$bannerData,channelData:$channelData,listData:$listData"
+                    )
                     //只要子flow里面的数据不为空，就放到resultList里面
                     val resultList = mutableListOf<String?>()
                     if (bannerData != null) {

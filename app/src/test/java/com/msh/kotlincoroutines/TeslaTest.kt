@@ -25,6 +25,16 @@ class TeslaTest {
         emit(mutableListOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))
     }
 
+
+    @Test
+    fun test4() {
+        listOf(1,2,3,4).forEachIndexed { index, i ->
+
+            println("$index---->${i}")
+        }
+
+    }
+
     // 从服务器 获取 可用 ids  兑换新的 Token 输出Tesla2Test.kt
     @Test
     fun test() {

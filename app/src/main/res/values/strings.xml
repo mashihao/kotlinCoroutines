@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">kotlinCoroutines</string>
+    <string name="app_name">PrintTest</string>
     <string name="text"><![CDATA[ 123吗 <a href="https://www.baidu.com">网页地址</a> 吗  <a href="http://www.baidu.com">网页地址</a> 吗 www.baidu.com吗 123  吗 <a href="https://tool.oschina.net/regex/">网页地址</a> 吗 EAP2.3  <a href="https://gitee.com/chinasoft4_ohos/Better-Link-Movement-Method">网页地址</a>
     <a href="https://en.wikipedia.org/wiki/Gotham_City">Gotham</a> has been good to our family, but the city\u2019s been suffering. People less fortunate
 than us have been enduring very hard times. So we built a new, cheap, public transportation system to unite the city.  http://batman.wikia.com/wiki/Wayne_Tower And at the center,
