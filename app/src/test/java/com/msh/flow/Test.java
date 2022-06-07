@@ -19,20 +19,80 @@ import java.util.regex.Pattern;
 public class Test {
 
 
+    class Person {
+        String name;
+        List<Name> list;
+
+        public Person(String name, List<Name> list) {
+            this.name = name;
+            this.list = list;
+        }
+
+        @Override
+        public String toString() {
+            return "Person{" +
+                    "name='" + name + '\'' +
+                    ", list=" + list +
+                    '}';
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+
+        public List<Name> getList() {
+            return list;
+        }
+
+        public void setList(List<Name> list) {
+            this.list = list;
+        }
+    }
+
+    class Name {
+        String name;
+
+        @Override
+        public String toString() {
+            return "Name{" +
+                    "name='" + name + '\'' +
+                    '}';
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public Name(String name) {
+            this.name = name;
+        }
+    }
+
     @org.junit.Test
     public void test() {
 
-        String json =
+        List<Name> list = new ArrayList<>();
+        list.add(new Name("1"));
+        list.add(new Name("2"));
+        list.add(new Name("3"));
+        Person person = new Person("person", list);
 
-                "{\"poNo\": \"U120000005802\", \"orderQyt\": 0.50, \"unit\": \"桶\", \"productName\": \"[正大] 醇香猪油 铁桶 (15kg)\", \"productCode\": \"406863463\", \"productId\": null, \"overpickflag\": false, \"overpickRatio\": null, \"ykQty\": 34.00, \"ykUnit\": \"桶\", \"storeCnt\": 1}";
+        System.out.println(person.toString());
+        List<Name> list1 = person.list;
+        for (int i = 0; i < list1.size(); i++) {
+            list1.get(i).setName("Item----->" + i);
+        }
 
-
-        Gson gson = new Gson();
-
-        PdaProductYkInfo pdaProductYkInfo = gson.fromJson(json, PdaProductYkInfo.class);
-
-        System.out.println(pdaProductYkInfo.toString());
-
+        System.out.println(person.toString());
     }
 
     public static boolean isNumber(String str) {

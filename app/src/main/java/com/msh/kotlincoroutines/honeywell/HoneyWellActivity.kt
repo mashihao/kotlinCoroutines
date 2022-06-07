@@ -1,11 +1,16 @@
 package com.msh.kotlincoroutines.honeywell
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.printservice.PrintService
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.blankj.utilcode.util.ToastUtils
 import com.bumptech.glide.Glide
 import com.msh.kotlincoroutines.databinding.ActivityHoneyWellBinding
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class HoneyWellActivity : AppCompatActivity() {
 
@@ -18,7 +23,6 @@ class HoneyWellActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityHoneyWellBinding
 
-    lateinit var printManager: PrintManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,33 +36,33 @@ class HoneyWellActivity : AppCompatActivity() {
     }
 
     private fun initView() {
-        printManager = PrintManager(this, mHandler)
 
 
         binding.connect.setOnClickListener {
             AppSetting.savePrint_ip(binding.ip.text.toString())
             AppSetting.savePrint_port(binding.port.text.toString().toInt())
-            printManager.connect()
+
+            PrintManager.getInstance().init(this, Handler())
         }
 
         binding.disconnect.setOnClickListener {
-            printManager.close()
+            PrintManager.getInstance().close()
         }
 
         binding.print.setOnClickListener {
-            printManager.addQueue(LabelDetail("${binding.productName.text.toString()}"))
-
-
-            val bitmap = PrintService.getBitmap(this, null, mHandler)
-
-            Glide.with(this).load(bitmap)
-                .into(binding.img)
+            lifecycleScope.launch {
+                for (i in 0..3) {
+                    delay(1000)
+                    PrintManager.getInstance()
+                        .addQueue(LabelDetail("${binding.productName.text.toString()}"))
+                }
+            }
         }
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        printManager.close()
+        PrintManager.getInstance().close()
     }
 //    val LINK_SUCCESS = 10000 //链接成功
 //
@@ -92,8 +96,6 @@ class HoneyWellActivity : AppCompatActivity() {
             else -> {
                 ToastUtils.showShort("未知错误")
             }
-
-
         }
         false
     }

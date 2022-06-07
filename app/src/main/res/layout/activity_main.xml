@@ -17,37 +17,44 @@
         android:orientation="vertical">
 
 
+        <com.msh.kotlincoroutines.SwitchView
+            android:id="@+id/widgetSwitch2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
         <RelativeLayout
-            android:layout_marginTop="100dp"
-            android:layout_gravity="center_horizontal"
             android:layout_width="match_parent"
-            android:layout_height="180dp">
+            android:layout_height="180dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="100dp">
 
 
             <com.youth.banner.Banner
                 android:id="@+id/bannerLayout2"
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
-                android:layout_marginTop="20dp"
-                />
+                android:layout_marginTop="20dp" />
+
             <Button
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
                 android:id="@+id/left"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="上一页" />
+                android:text="上一页"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
                 android:id="@+id/right"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:text="下一页" />
+                android:text="下一页"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </RelativeLayout>
 
@@ -55,7 +62,7 @@
         <EditText
             android:id="@+id/input"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/contenttext2"

@@ -43,7 +43,7 @@
             android:name=".viewmodel.TestViewModelActivity"
             android:exported="true" />
         <activity
-            android:name=".honeywell.HoneyWellActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -54,6 +54,8 @@
 
         <activity android:name=".HandlerActivity" />
         <activity android:name=".custom.CustomViewActivity" />
+
+        <service android:name=".honeywell.PrinterService" android:enabled="true" android:exported="true"/>
     </application>
 
 </manifest>

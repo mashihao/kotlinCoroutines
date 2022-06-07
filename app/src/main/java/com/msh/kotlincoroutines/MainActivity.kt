@@ -53,8 +53,19 @@ class MainActivity : BaseActivity() {
         dataBinding.viewmodel = viewModel
         init()
 
+        dataBinding.widgetSwitch2.setOnStateChangedListener(object :
+            SwitchView.OnStateChangedListener {
+            override fun toggleToOn(view: SwitchView?) {
+                dataBinding.widgetSwitch2.toggleSwitch(true)
+            }
 
-        val banner =dataBinding.bannerLayout2
+            override fun toggleToOff(view: SwitchView?) {
+                dataBinding.widgetSwitch2.toggleSwitch(false)
+            }
+
+        })
+
+        val banner = dataBinding.bannerLayout2
         //设置图片加载器
         //设置图片加载器
         banner.setImageLoader(GlideImageLoader())
@@ -83,7 +94,6 @@ class MainActivity : BaseActivity() {
         dataBinding.right.setOnClickListener {
             BannerUtils.next(dataBinding.bannerLayout2)
         }
-
 
 
     }

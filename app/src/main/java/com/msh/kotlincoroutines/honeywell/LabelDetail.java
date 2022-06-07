@@ -1,12 +1,14 @@
 package com.msh.kotlincoroutines.honeywell;
 
+import java.io.Serializable;
+
 /**
  * @author : 马世豪
  * time : 2022/4/20 13
  * email : ma_shihao@yeah.net
  * des :
  */
-public class LabelDetail {
+public class LabelDetail implements Serializable {
 
     private int type;
     private String product_name;
@@ -65,5 +67,18 @@ public class LabelDetail {
 
     public void setQty(double qty) {
         this.qty = qty;
+    }
+
+
+    @Override
+    public String toString() {
+        return "LabelDetail{" +
+                "type=" + type +
+                ", product_name='" + product_name + '\'' +
+                ", product_code='" + product_code + '\'' +
+                ", store_name='" + store_name + '\'' +
+                ", format='" + format + '\'' +
+                ", qty=" + qty +
+                '}';
     }
 }
